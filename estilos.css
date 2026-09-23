@@ -1,0 +1,824 @@
+/* =========================================================
+   FICCIÓN INTERACTIVA — ESTILOS DEFINITIVOS
+   Estética: thriller psicológico / costanera / niebla / río
+   Archivo compatible con index.html
+   ========================================================= */
+
+:root {
+    --fondo: #070b0d;
+    --fondo-profundo: #030506;
+    --panel: rgba(9, 15, 17, 0.88);
+    --panel-suave: rgba(16, 24, 26, 0.72);
+    --texto: #e7e6df;
+    --texto-suave: #aeb8b5;
+    --linea: rgba(191, 211, 205, 0.18);
+    --acento: #b9cbc5;
+    --acento-claro: #dbe7e2;
+    --peligro: #8e302b;
+    --peligro-claro: #c36a61;
+    --sombra: rgba(0, 0, 0, 0.7);
+    --ancho: 980px;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    min-height: 100%;
+    background: var(--fondo-profundo);
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    color: var(--texto);
+    background:
+        radial-gradient(circle at 50% 18%, rgba(115, 139, 139, 0.13), transparent 34%),
+        linear-gradient(180deg, #10191c 0%, #081012 42%, #030506 100%);
+    font-family: Georgia, "Times New Roman", serif;
+    line-height: 1.72;
+    overflow-x: hidden;
+}
+
+/* Niebla ambiental sin imágenes externas */
+body::before,
+body::after {
+    content: "";
+    position: fixed;
+    inset: -20%;
+    pointer-events: none;
+    z-index: 0;
+}
+
+body::before {
+    background:
+        radial-gradient(ellipse at 20% 35%, rgba(210, 224, 219, 0.07), transparent 30%),
+        radial-gradient(ellipse at 78% 48%, rgba(190, 210, 205, 0.055), transparent 28%),
+        radial-gradient(ellipse at 48% 78%, rgba(185, 203, 200, 0.04), transparent 32%);
+    filter: blur(22px);
+    animation: niebla 18s ease-in-out infinite alternate;
+}
+
+body::after {
+    background: linear-gradient(90deg, transparent, rgba(202, 216, 211, 0.025), transparent);
+    transform: rotate(-8deg);
+    animation: deriva 24s linear infinite alternate;
+}
+
+button,
+video {
+    font: inherit;
+}
+
+button {
+    -webkit-tap-highlight-color: transparent;
+}
+
+/* =========================================================
+   PORTADA
+   ========================================================= */
+
+.portada {
+    position: relative;
+    z-index: 1;
+    min-height: 100vh;
+    min-height: 100svh;
+    display: grid;
+    place-items: center;
+    padding: 40px 22px;
+    text-align: center;
+    overflow: hidden;
+}
+
+.portada::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+        linear-gradient(to bottom, rgba(1, 4, 5, 0.25), rgba(1, 4, 5, 0.9)),
+        radial-gradient(circle at center, rgba(113, 138, 137, 0.13), transparent 52%);
+    z-index: -1;
+}
+
+.portada-contenido {
+    width: min(760px, 100%);
+    padding: clamp(34px, 6vw, 68px) clamp(22px, 6vw, 64px);
+    border-top: 1px solid var(--linea);
+    border-bottom: 1px solid var(--linea);
+    background: linear-gradient(180deg, rgba(8, 14, 16, 0.35), rgba(5, 9, 10, 0.68));
+    box-shadow: 0 32px 90px rgba(0, 0, 0, 0.35);
+    backdrop-filter: blur(5px);
+}
+
+.etiqueta,
+.nivel {
+    display: inline-block;
+    margin: 0 0 14px;
+    color: var(--texto-suave);
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+}
+
+.portada h1 {
+    margin: 0;
+    color: #f0f1eb;
+    font-size: clamp(2.25rem, 7vw, 5.2rem);
+    font-weight: 400;
+    letter-spacing: 0.07em;
+    line-height: 1.04;
+    text-shadow: 0 8px 28px rgba(0, 0, 0, 0.75);
+}
+
+.subtitulo {
+    max-width: 620px;
+    margin: 28px auto 34px;
+    color: #bbc5c1;
+    font-size: clamp(1rem, 2vw, 1.18rem);
+    font-style: italic;
+}
+
+.boton-inicio,
+.reiniciar {
+    min-width: 220px;
+    padding: 15px 28px;
+    border: 1px solid rgba(206, 224, 217, 0.46);
+    border-radius: 2px;
+    color: var(--acento-claro);
+    background: rgba(14, 25, 27, 0.72);
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: transform 180ms ease, background 180ms ease, border-color 180ms ease, box-shadow 180ms ease;
+}
+
+.boton-inicio:hover,
+.boton-inicio:focus-visible,
+.reiniciar:hover,
+.reiniciar:focus-visible {
+    transform: translateY(-2px);
+    border-color: rgba(225, 237, 232, 0.8);
+    background: rgba(32, 51, 53, 0.9);
+    box-shadow: 0 10px 28px rgba(0, 0, 0, 0.4);
+    outline: none;
+}
+
+/* =========================================================
+   VISIBILIDAD Y NAVEGACIÓN
+   ========================================================= */
+
+.oculto {
+    display: none !important;
+}
+
+.historia {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    min-height: 100vh;
+}
+
+.nodo {
+    display: none;
+    min-height: 100vh;
+    min-height: 100svh;
+    padding: clamp(28px, 5vw, 70px) 20px;
+    align-items: center;
+    justify-content: center;
+}
+
+.nodo.activo {
+    display: flex;
+    animation: aparecer 650ms ease both;
+}
+
+.contenido-nodo {
+    width: min(var(--ancho), 100%);
+    margin: auto;
+    padding: clamp(24px, 5vw, 52px);
+    border: 1px solid rgba(190, 211, 204, 0.13);
+    background:
+        linear-gradient(180deg, rgba(15, 23, 25, 0.86), rgba(5, 9, 10, 0.94));
+    box-shadow:
+        0 28px 80px rgba(0, 0, 0, 0.55),
+        inset 0 1px 0 rgba(255, 255, 255, 0.025);
+    backdrop-filter: blur(7px);
+}
+
+.nodo h1 {
+    margin: 0 0 26px;
+    color: #eff0ea;
+    font-size: clamp(2rem, 5vw, 3.8rem);
+    font-weight: 400;
+    line-height: 1.08;
+    letter-spacing: 0.015em;
+    text-wrap: balance;
+}
+
+/* =========================================================
+   IMÁGENES Y VIDEOS
+   ========================================================= */
+
+.imagen-historia,
+.video-historia {
+    display: block;
+    width: 100%;
+    max-height: 58vh;
+    margin: 0 0 30px;
+    border: 1px solid rgba(192, 211, 205, 0.16);
+    border-radius: 2px;
+    background: #020404;
+    object-fit: cover;
+    box-shadow: 0 22px 50px rgba(0, 0, 0, 0.48);
+}
+
+.imagen-historia {
+    aspect-ratio: 16 / 9;
+}
+
+.video-historia {
+    aspect-ratio: 16 / 9;
+}
+
+/* Oscurecimiento sutil para integrar las PNG con la atmósfera */
+.imagen-historia {
+    filter: saturate(0.72) contrast(1.06) brightness(0.88);
+}
+
+/* =========================================================
+   TEXTO NARRATIVO
+   ========================================================= */
+
+.texto-historia {
+    max-width: 780px;
+    margin: 0 auto;
+    color: #d9dcd6;
+    font-size: clamp(1.03rem, 1.8vw, 1.18rem);
+}
+
+.texto-historia p {
+    margin: 0 0 1.1em;
+}
+
+.texto-historia p:last-child {
+    margin-bottom: 0;
+}
+
+.dialogo {
+    margin-top: 24px !important;
+    padding: 17px 20px;
+    border-left: 2px solid rgba(182, 204, 197, 0.46);
+    color: #f0eee6;
+    background: rgba(196, 215, 209, 0.035);
+    font-style: italic;
+}
+
+.pregunta {
+    margin: 34px 0 16px;
+    color: var(--acento-claro);
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 0.82rem;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+}
+
+/* =========================================================
+   DECISIONES
+   ========================================================= */
+
+.opciones {
+    display: grid;
+    gap: 12px;
+    margin-top: 28px;
+}
+
+.opciones button {
+    position: relative;
+    width: 100%;
+    padding: 17px 20px 17px 48px;
+    border: 1px solid rgba(179, 203, 196, 0.19);
+    border-radius: 2px;
+    color: #dce2de;
+    background: rgba(17, 28, 30, 0.68);
+    text-align: left;
+    line-height: 1.45;
+    cursor: pointer;
+    transition: transform 160ms ease, background 160ms ease, border-color 160ms ease, color 160ms ease;
+}
+
+.opciones button::before {
+    content: "›";
+    position: absolute;
+    left: 20px;
+    top: 50%;
+    transform: translateY(-52%);
+    color: #829a94;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 1.55rem;
+    transition: transform 160ms ease, color 160ms ease;
+}
+
+.opciones button:hover,
+.opciones button:focus-visible {
+    transform: translateX(5px);
+    border-color: rgba(203, 224, 217, 0.46);
+    color: #ffffff;
+    background: rgba(31, 48, 50, 0.88);
+    outline: none;
+}
+
+.opciones button:hover::before,
+.opciones button:focus-visible::before {
+    color: #dbe7e2;
+    transform: translate(5px, -52%);
+}
+
+/* =========================================================
+   ATMÓSFERAS SEGÚN EL CAMINO
+   No cambia la historia: solo matiza visualmente cada rama.
+   ========================================================= */
+
+/* Cuchillo / cazador: más oscuro y amenazante */
+#nodo2 .contenido-nodo,
+#nodo5 .contenido-nodo,
+#nodo6 .contenido-nodo,
+#nodo11 .contenido-nodo,
+#nodo12 .contenido-nodo,
+#nodo17 .contenido-nodo {
+    box-shadow:
+        0 28px 85px rgba(0, 0, 0, 0.62),
+        inset 3px 0 0 rgba(116, 45, 40, 0.28);
+}
+
+/* Perro / tejedora: humedad, niebla, misterio */
+#nodo3 .contenido-nodo,
+#nodo7 .contenido-nodo,
+#nodo8 .contenido-nodo,
+#nodo13 .contenido-nodo,
+#nodo14 .contenido-nodo,
+#nodo19 .contenido-nodo {
+    background:
+        linear-gradient(180deg, rgba(13, 25, 24, 0.87), rgba(5, 10, 10, 0.95));
+}
+
+/* Billetera / forastero: frío, concreto, desagüe */
+#nodo4 .contenido-nodo,
+#nodo9 .contenido-nodo,
+#nodo10 .contenido-nodo,
+#nodo15 .contenido-nodo,
+#nodo16 .contenido-nodo,
+#nodo21 .contenido-nodo,
+#nodo22 .contenido-nodo {
+    background:
+        linear-gradient(180deg, rgba(17, 21, 23, 0.9), rgba(5, 7, 8, 0.96));
+}
+
+/* =========================================================
+   FINALES
+   ========================================================= */
+
+.final .contenido-nodo {
+    text-align: center;
+    border-color: rgba(198, 216, 209, 0.22);
+}
+
+.final .texto-historia,
+.muerte .texto-historia {
+    text-align: left;
+}
+
+.mensaje-final {
+    margin: 42px 0 24px;
+    color: #e9e9e2;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: clamp(1.3rem, 3vw, 2rem);
+    font-weight: 700;
+    letter-spacing: 0.34em;
+    text-transform: uppercase;
+}
+
+.muerte .contenido-nodo {
+    border-color: rgba(142, 48, 43, 0.35);
+    box-shadow:
+        0 28px 90px rgba(0, 0, 0, 0.72),
+        inset 0 0 90px rgba(92, 18, 16, 0.11);
+}
+
+.muerte .nivel,
+.muerte .mensaje-final {
+    color: var(--peligro-claro);
+}
+
+.muerte .reiniciar {
+    border-color: rgba(195, 106, 97, 0.45);
+}
+
+/* =========================================================
+   ANIMACIONES
+   ========================================================= */
+
+@keyframes aparecer {
+    from {
+        opacity: 0;
+        transform: translateY(12px);
+        filter: blur(3px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+        filter: blur(0);
+    }
+}
+
+@keyframes niebla {
+    from {
+        transform: translate3d(-2%, -1%, 0) scale(1);
+        opacity: 0.7;
+    }
+    to {
+        transform: translate3d(3%, 2%, 0) scale(1.08);
+        opacity: 1;
+    }
+}
+
+@keyframes deriva {
+    from {
+        transform: translateX(-5%) rotate(-8deg);
+    }
+    to {
+        transform: translateX(5%) rotate(-8deg);
+    }
+}
+
+/* =========================================================
+   CELULAR / TABLET
+   ========================================================= */
+
+@media (max-width: 700px) {
+    body {
+        line-height: 1.62;
+    }
+
+    .portada {
+        padding: 22px 16px;
+    }
+
+    .portada-contenido {
+        padding: 40px 20px;
+    }
+
+    .nodo {
+        padding: 18px 12px 30px;
+        align-items: flex-start;
+    }
+
+    .contenido-nodo {
+        padding: 25px 18px 28px;
+    }
+
+    .nodo h1 {
+        margin-bottom: 20px;
+    }
+
+    .imagen-historia,
+    .video-historia {
+        margin-bottom: 24px;
+        max-height: none;
+    }
+
+    .opciones button {
+        padding: 16px 15px 16px 42px;
+    }
+
+    .opciones button::before {
+        left: 16px;
+    }
+}
+
+/* Accesibilidad: respeta usuarios que prefieren menos movimiento */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        scroll-behavior: auto !important;
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+/* =========================================================
+   EDICIÓN EXPANDIDA — IDENTIDAD VISUAL DE CADA CAMINO
+   Cada rama adopta una atmósfera propia sin requerir
+   imágenes externas ni cambios en el HTML.
+   ========================================================= */
+
+/* Base: cada nodo puede definir su propia paleta */
+.nodo {
+    --ruta-acento: #b9cbc5;
+    --ruta-acento-suave: rgba(185, 203, 197, .16);
+    --ruta-fondo-1: rgba(14, 24, 26, .96);
+    --ruta-fondo-2: rgba(4, 8, 9, .98);
+    --ruta-brillo: rgba(155, 185, 180, .10);
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+    background:
+        radial-gradient(circle at 50% 10%, var(--ruta-brillo), transparent 38%),
+        linear-gradient(180deg, #0c1518 0%, #040708 100%);
+}
+
+.nodo::before,
+.nodo::after {
+    content: "";
+    position: absolute;
+    pointer-events: none;
+    z-index: -1;
+}
+
+.nodo::before {
+    inset: -18%;
+    background:
+        radial-gradient(ellipse at 18% 25%, var(--ruta-acento-suave), transparent 25%),
+        radial-gradient(ellipse at 82% 68%, var(--ruta-brillo), transparent 28%);
+    filter: blur(36px);
+    opacity: .72;
+    animation: atmosferaRuta 14s ease-in-out infinite alternate;
+}
+
+.nodo::after {
+    inset: 0;
+    opacity: .22;
+    background-image:
+        repeating-linear-gradient(112deg, transparent 0 36px, rgba(255,255,255,.018) 37px, transparent 38px 74px);
+    mix-blend-mode: screen;
+}
+
+.contenido-nodo {
+    position: relative;
+    overflow: hidden;
+    border-color: color-mix(in srgb, var(--ruta-acento) 24%, transparent);
+    background:
+        linear-gradient(145deg, color-mix(in srgb, var(--ruta-fondo-1) 94%, transparent), var(--ruta-fondo-2));
+}
+
+.contenido-nodo::before {
+    content: "";
+    position: absolute;
+    inset: 0 0 auto;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--ruta-acento), transparent);
+    opacity: .55;
+}
+
+.nodo .nivel {
+    color: var(--ruta-acento);
+}
+
+.nodo .dialogo {
+    border-left-color: color-mix(in srgb, var(--ruta-acento) 62%, transparent);
+    background: linear-gradient(90deg, var(--ruta-acento-suave), transparent 72%);
+}
+
+.nodo .pregunta {
+    color: var(--ruta-acento);
+}
+
+.nodo .opciones button {
+    border-color: color-mix(in srgb, var(--ruta-acento) 24%, transparent);
+    background:
+        linear-gradient(90deg, var(--ruta-acento-suave), rgba(8, 13, 14, .72) 28%);
+}
+
+.nodo .opciones button::before {
+    color: var(--ruta-acento);
+}
+
+.nodo .opciones button:hover,
+.nodo .opciones button:focus-visible {
+    border-color: color-mix(in srgb, var(--ruta-acento) 68%, transparent);
+    background:
+        linear-gradient(90deg, color-mix(in srgb, var(--ruta-acento) 22%, transparent), rgba(14, 22, 23, .94) 48%);
+    box-shadow: 0 12px 30px rgba(0,0,0,.25), inset 3px 0 0 var(--ruta-acento);
+}
+
+/* El umbral: neutral, frío y desorientador */
+#nodo1 {
+    --ruta-acento: #b8cbc9;
+    --ruta-acento-suave: rgba(145, 177, 177, .14);
+    --ruta-fondo-1: rgba(12, 25, 28, .94);
+    --ruta-fondo-2: rgba(3, 8, 10, .98);
+    --ruta-brillo: rgba(142, 182, 184, .14);
+    background:
+        radial-gradient(ellipse at 50% 15%, rgba(148, 183, 184, .20), transparent 34%),
+        linear-gradient(180deg, #122126 0%, #071014 48%, #020506 100%);
+}
+
+/* ---------------------------------------------------------
+   CAMINO DEL CUCHILLO — óxido, sangre, fuego, violencia
+   Nodos 2, 5, 6, 11, 12, 17
+   --------------------------------------------------------- */
+#nodo2, #nodo5, #nodo6, #nodo11, #nodo12, #nodo17 {
+    --ruta-acento: #c1725f;
+    --ruta-acento-suave: rgba(142, 55, 39, .19);
+    --ruta-fondo-1: rgba(34, 20, 16, .96);
+    --ruta-fondo-2: rgba(10, 6, 5, .99);
+    --ruta-brillo: rgba(177, 78, 49, .15);
+    background:
+        radial-gradient(circle at 82% 16%, rgba(160, 66, 36, .16), transparent 25%),
+        radial-gradient(circle at 15% 78%, rgba(78, 18, 14, .18), transparent 30%),
+        linear-gradient(155deg, #211612 0%, #100a08 48%, #050303 100%);
+}
+
+#nodo2::after, #nodo5::after, #nodo6::after,
+#nodo11::after, #nodo12::after, #nodo17::after {
+    opacity: .28;
+    background-image:
+        repeating-linear-gradient(118deg, transparent 0 48px, rgba(198,111,82,.045) 49px, transparent 50px 92px),
+        radial-gradient(circle at 74% 24%, rgba(225,116,68,.10) 0 1px, transparent 2px);
+    background-size: auto, 19px 19px;
+}
+
+#nodo2 .imagen-historia,
+#nodo5 .video-historia {
+    border-color: rgba(193, 105, 77, .35);
+    filter: saturate(.78) sepia(.12) contrast(1.12) brightness(.82);
+    box-shadow: 0 25px 65px rgba(30, 4, 0, .64), 0 0 35px rgba(132, 48, 29, .10);
+}
+
+#nodo17 .mensaje-final {
+    color: #d58a72;
+    text-shadow: 0 0 28px rgba(156, 54, 34, .35);
+}
+
+/* ---------------------------------------------------------
+   CAMINO DEL PERRO — bosque, humedad, hilo, misterio ritual
+   Nodos 3, 7, 8, 13, 14, 19
+   --------------------------------------------------------- */
+#nodo3, #nodo7, #nodo8, #nodo13, #nodo14, #nodo19 {
+    --ruta-acento: #91b59b;
+    --ruta-acento-suave: rgba(74, 119, 91, .19);
+    --ruta-fondo-1: rgba(14, 31, 24, .96);
+    --ruta-fondo-2: rgba(4, 10, 8, .99);
+    --ruta-brillo: rgba(105, 157, 122, .15);
+    background:
+        radial-gradient(ellipse at 15% 15%, rgba(87, 135, 103, .18), transparent 30%),
+        radial-gradient(ellipse at 82% 72%, rgba(35, 77, 57, .20), transparent 32%),
+        linear-gradient(160deg, #14271f 0%, #09130f 52%, #030705 100%);
+}
+
+#nodo3::after, #nodo7::after, #nodo8::after,
+#nodo13::after, #nodo14::after, #nodo19::after {
+    opacity: .30;
+    background-image:
+        repeating-radial-gradient(ellipse at 50% 120%, transparent 0 18px, rgba(157,194,166,.035) 19px, transparent 21px 42px),
+        linear-gradient(100deg, transparent 0 46%, rgba(132,176,146,.035) 48%, transparent 50%);
+}
+
+#nodo3 .imagen-historia,
+#nodo7 .video-historia {
+    border-color: rgba(135, 178, 148, .34);
+    filter: saturate(.72) hue-rotate(8deg) contrast(1.06) brightness(.84);
+    box-shadow: 0 25px 65px rgba(0, 21, 10, .58), 0 0 40px rgba(70, 117, 84, .10);
+}
+
+#nodo13 .dialogo,
+#nodo14 .dialogo {
+    border-left-width: 3px;
+    box-shadow: inset 14px 0 28px rgba(58, 102, 72, .08);
+}
+
+#nodo19 .mensaje-final {
+    color: #a8c7ad;
+    text-shadow: 0 0 28px rgba(88, 140, 101, .30);
+}
+
+/* ---------------------------------------------------------
+   CAMINO DE LA BILLETERA — concreto, metal, expediente,
+   identidad y transacción. Nodos 4, 9, 10, 15, 16, 21, 22
+   --------------------------------------------------------- */
+#nodo4, #nodo9, #nodo10, #nodo15, #nodo16, #nodo21, #nodo22 {
+    --ruta-acento: #9baebe;
+    --ruta-acento-suave: rgba(88, 111, 130, .18);
+    --ruta-fondo-1: rgba(20, 26, 32, .97);
+    --ruta-fondo-2: rgba(6, 8, 11, .99);
+    --ruta-brillo: rgba(112, 139, 160, .14);
+    background:
+        radial-gradient(circle at 76% 18%, rgba(101, 128, 148, .14), transparent 25%),
+        linear-gradient(135deg, #171d23 0%, #0c1014 50%, #040507 100%);
+}
+
+#nodo4::after, #nodo9::after, #nodo10::after,
+#nodo15::after, #nodo16::after, #nodo21::after, #nodo22::after {
+    opacity: .26;
+    background-image:
+        linear-gradient(rgba(164,184,199,.035) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(164,184,199,.025) 1px, transparent 1px);
+    background-size: 46px 46px;
+}
+
+#nodo4 .imagen-historia,
+#nodo9 .video-historia {
+    border-color: rgba(139, 164, 184, .34);
+    filter: saturate(.58) contrast(1.13) brightness(.82) hue-rotate(5deg);
+    box-shadow: 0 25px 65px rgba(0, 7, 16, .66), 0 0 38px rgba(73, 105, 132, .11);
+}
+
+#nodo15 .contenido-nodo,
+#nodo16 .contenido-nodo {
+    border-radius: 0;
+    box-shadow: 0 30px 90px rgba(0,0,0,.66), inset 0 0 0 1px rgba(157,180,198,.025);
+}
+
+#nodo21 .mensaje-final {
+    color: #b7c7d3;
+    text-shadow: 0 0 28px rgba(92, 123, 148, .30);
+}
+
+/* Cruces: conservan una estética inestable entre ramas */
+#nodo18, #nodo20 {
+    --ruta-acento: #a69c8b;
+    --ruta-acento-suave: rgba(133, 119, 96, .15);
+    --ruta-fondo-1: rgba(24, 23, 20, .96);
+    --ruta-fondo-2: rgba(6, 7, 7, .99);
+    --ruta-brillo: rgba(147, 135, 111, .11);
+    background:
+        radial-gradient(ellipse at 50% 40%, rgba(128,119,100,.11), transparent 30%),
+        linear-gradient(160deg, #181814, #080a09 62%, #030404);
+}
+
+/* Muerte: ruptura roja breve y más agresiva */
+#nodo22 {
+    --ruta-acento: #bd625b;
+    --ruta-acento-suave: rgba(126, 31, 27, .20);
+    --ruta-brillo: rgba(147, 37, 32, .15);
+    background:
+        radial-gradient(circle at 50% 42%, rgba(119, 20, 18, .18), transparent 24%),
+        linear-gradient(165deg, #1a1112 0%, #090607 55%, #020202 100%);
+}
+
+#nodo22.activo .contenido-nodo {
+    animation: impacto 480ms cubic-bezier(.2,.75,.25,1) both;
+}
+
+/* Medios: marco cinematográfico distinto por ruta */
+.imagen-historia,
+.video-historia {
+    outline: 1px solid rgba(255,255,255,.025);
+    outline-offset: -7px;
+    transition: filter 400ms ease, transform 400ms ease, box-shadow 400ms ease;
+}
+
+.imagen-historia:hover {
+    transform: scale(1.008);
+}
+
+/* El título gana presencia según el color de la rama */
+.nodo h1::after {
+    content: "";
+    display: block;
+    width: 76px;
+    height: 1px;
+    margin-top: 18px;
+    background: linear-gradient(90deg, var(--ruta-acento), transparent);
+    opacity: .75;
+}
+
+/* Barra lateral visual, como indicador de la ruta elegida */
+.contenido-nodo::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 3px;
+    height: 100%;
+    background: linear-gradient(180deg, transparent, var(--ruta-acento) 22%, var(--ruta-acento) 78%, transparent);
+    opacity: .42;
+}
+
+@keyframes atmosferaRuta {
+    from { transform: translate3d(-2%, -1%, 0) scale(1); opacity: .55; }
+    to   { transform: translate3d(3%, 2%, 0) scale(1.08); opacity: .90; }
+}
+
+@keyframes impacto {
+    0%   { transform: translateX(0); filter: brightness(1); }
+    18%  { transform: translateX(-7px); filter: brightness(1.32); }
+    38%  { transform: translateX(5px); }
+    58%  { transform: translateX(-3px); }
+    100% { transform: translateX(0); filter: brightness(1); }
+}
+
+@media (max-width: 700px) {
+    .nodo::after { opacity: .14; }
+    .contenido-nodo::after { width: 2px; }
+    .nodo h1::after { width: 54px; }
+}

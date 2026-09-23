@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ficción Interactiva | El Despertar</title>
+    <link rel="stylesheet" href="estilos.css">
+</head>
+<body>
+<section id="portada" class="portada">
+    <div class="portada-contenido">
+        <p class="etiqueta">TRABAJO PRÁCTICO 1</p>
+        <h1>FICCIÓN INTERACTIVA</h1>
+        <p class="subtitulo">Cada decisión modifica tu camino.<br>Algunas respuestas quizás sea mejor no encontrarlas.</p>
+        <button class="boton-inicio" onclick="comenzarHistoria()">COMENZAR</button>
+    </div>
+</section>
+
+<main id="historia" class="historia oculto">
+    <section class="nodo activo" id="nodo1"><div class="contenido-nodo">
+        <span class="nivel">NIVEL 0 · EL UMBRAL</span><h1>El Despertar</h1>
+        <video class="video-historia" controls playsinline><source src="videos/inicio.mp4" type="video/mp4">Tu navegador no puede reproducir este video.</video>
+        <div class="texto-historia"><p>Abrís los ojos entre hojas podridas y barro negro. La niebla borra el cielo y tu memoria está en blanco; solo sentís una punzada en la nuca y el frío calándote los huesos.</p><p>Ante vos, la espesura se corta en tres direcciones.</p></div>
+        <p class="pregunta">¿Qué camino elegís?</p><div class="opciones">
+        <button onclick="irANodo('nodo2')">Caminar hacia los árboles junto al río</button><button onclick="irANodo('nodo3')">Seguir el sendero de arena</button><button onclick="irANodo('nodo4')">Bajar hacia el desagüe</button></div>
+    </div></section>
+
+    <section class="nodo" id="nodo2"><div class="contenido-nodo"><span class="nivel">NIVEL 1 · EL HALLAZGO</span><h1>El Sauce Sangrante</h1>
+        <img src="imagenes/cuchillo.png" alt="Cuchillo clavado en un sauce junto al río" class="imagen-historia">
+        <div class="texto-historia"><p>Clavado hasta la empuñadura en un sauce carcomido brilla un cuchillo de caza de acero manchado. Al sujetarlo y tirar, la madera cruje soltando una savia densa y roja.</p><p>El filo es impecable.</p></div>
+        <p class="pregunta">¿Qué hacés con el cuchillo?</p><div class="opciones"><button onclick="irANodo('nodo5')">Guardar la hoja bajo la ropa para no parecer una amenaza</button><button onclick="irANodo('nodo6')">Avanzar con el cuchillo desenvainado</button></div>
+    </div></section>
+
+    <section class="nodo" id="nodo3"><div class="contenido-nodo"><span class="nivel">NIVEL 1 · EL HALLAZGO</span><h1>La Huella y el Sabueso</h1>
+        <img src="imagenes/perro.png" alt="Perro encontrado en el sendero" class="imagen-historia">
+        <div class="texto-historia"><p>A mitad del sendero aguarda un perro flaco de raza dudosa. Tiene marcas de mordidas viejas en el lomo.</p><p>No ladra; se acerca con cautela, olfatea tu mano congelada y mueve la cola en reconocimiento.</p></div>
+        <p class="pregunta">¿Qué hacés?</p><div class="opciones"><button onclick="irANodo('nodo7')">Acariciar al animal y dejar que lidere la marcha</button><button onclick="irANodo('nodo8')">Ignorarlo y avanzar a paso firme sin compañía</button></div>
+    </div></section>
+
+    <section class="nodo" id="nodo4"><div class="contenido-nodo"><span class="nivel">NIVEL 1 · EL HALLAZGO</span><h1>La Roca de las Pertenencias</h1>
+        <img src="imagenes/billetera.png" alt="Billetera encontrada junto a un charco" class="imagen-historia">
+        <div class="texto-historia"><p>Junto a un charco descansa tu billetera de cuero gastado. Dentro hay billetes húmedos, una cédula con la tinta borrada y un fragmento de fotografía.</p><p>Alguien arrancó el rostro que estaba al lado del tuyo.</p></div>
+        <p class="pregunta">¿Qué hacés?</p><div class="opciones"><button onclick="irANodo('nodo9')">Examinar a contraluz el recorte de la fotografía</button><button onclick="irANodo('nodo10')">Guardar la billetera y buscar una salida inmediata</button></div>
+    </div></section>
+
+    <section class="nodo" id="nodo5"><div class="contenido-nodo"><span class="nivel">NIVEL 2 · EL ENCUENTRO</span><h1>El Campamento Oculto</h1>
+        <video class="video-historia" controls playsinline><source src="videos/cuchillo.mp4" type="video/mp4">Tu navegador no puede reproducir este video.</video>
+        <div class="texto-historia"><p>Siguiendo el humo encontrás la fogata de un cazador. Al verte desarmado a simple vista, apoya su escopeta sobre un tronco.</p><p class="dialogo">—Raro ver a alguien vivo por acá sin una hoja al cinto.</p></div>
+        <div class="opciones"><button onclick="irANodo('nodo11')">“Me perdí y busco el camino hacia el pueblo más cercano”</button><button onclick="irANodo('nodo12')">Sacar el cuchillo con calma: “Busco al dueño de esta marca”</button></div>
+    </div></section>
+
+    <section class="nodo" id="nodo6"><div class="contenido-nodo"><span class="nivel">NIVEL 2 · EL ENCUENTRO</span><h1>El Alto en el Sendero</h1>
+        <div class="texto-historia"><p>El cazador surge de los matorrales con una escopeta apuntando a tu pecho. Sus ojos se clavan en tu mano armada.</p><p class="dialogo">—Ese acero tiene dueño y sangre encima. Hablá antes de que te mande al infierno.</p></div>
+        <div class="opciones"><button onclick="irANodo('nodo12')">“Bajá eso o vas a probar el filo”</button><button onclick="irANodo('nodo11')">Clavar el cuchillo en la tierra: “Lo encontré en un árbol, no quiero problemas”</button></div>
+    </div></section>
+
+    <section class="nodo" id="nodo7"><div class="contenido-nodo"><span class="nivel">NIVEL 2 · EL ENCUENTRO</span><h1>El Árbol de la Tejedora</h1>
+        <video class="video-historia" controls playsinline><source src="videos/perro.mp4" type="video/mp4">Tu navegador no puede reproducir este video.</video>
+        <div class="texto-historia"><p>Guiado por el perro llegás al arenero. Abajo de un árbol, una mujer de ojos nublados teje con hilo negro.</p><p class="dialogo">—Solo dos tipos de hombres traen a esa bestia de vuelta: el que la crió o el que asesinó a su amo.</p></div>
+        <div class="opciones"><button onclick="irANodo('nodo13')">“Siento que el perro me conoce; debo ser su antiguo dueño”</button><button onclick="irANodo('nodo14')">“El animal me siguió solo; no sé de quién era ni qué pasó acá”</button></div>
+    </div></section>
+
+    <section class="nodo" id="nodo8"><div class="contenido-nodo"><span class="nivel">NIVEL 2 · EL ENCUENTRO</span><h1>La Ventana Tapiada</h1>
+        <div class="texto-historia"><p>Llegás al arenero solo, pero escuchás el trote del perro siguiendo tu rastro a la distancia.</p><p class="dialogo">—No te acerques. Si venís sin compañía, es porque abandonaste a los tuyos.</p></div>
+        <div class="opciones"><button onclick="irANodo('nodo13')">Caminar hacia el árbol con cautela: “No pretendo ningún mal, solo quiero ayuda”</button><button onclick="irANodo('nodo14')">Llamar con un silbido al perro</button></div>
+    </div></section>
+
+    <section class="nodo" id="nodo9"><div class="contenido-nodo"><span class="nivel">NIVEL 2 · EL ENCUENTRO</span><h1>El Reverso de la Imagen</h1>
+        <video class="video-historia" controls playsinline><source src="videos/billetera.mp4" type="video/mp4">Tu navegador no puede reproducir este video.</video>
+        <div class="texto-historia"><p>Al trasluz de la neblina distinguís unos números grabados a presión en el cartón de la foto.</p><p>Un crujido de hojas te interrumpe: apoyado en el túnel, un hombre de traje fuma un cigarro de olor extraño.</p><p class="dialogo">—Buscando recuerdos ajenos, por lo que veo.</p></div>
+        <div class="opciones"><button onclick="irANodo('nodo15')">“¿Cuánto vale la mitad de la foto que te guardaste?”</button><button onclick="irANodo('nodo16')">“Decime quién soy y cómo salgo de este basurero”</button></div>
+    </div></section>
+
+    <section class="nodo" id="nodo10"><div class="contenido-nodo"><span class="nivel">NIVEL 2 · EL ENCUENTRO</span><h1>La Barrera Rúnica</h1>
+        <div class="texto-historia"><p>El desagüe choca contra un arco de piedra antigua. Ahí te espera el traficante del reloj de plata.</p><p class="dialogo">—Nadie cruza hacia la ruta sin liquidar sus cuentas pendientes. ¿Trajiste lo acordado?</p></div>
+        <div class="opciones"><button onclick="irANodo('nodo15')">Mostrar la billetera vacía: “No tengo plata, solo estas cenizas”</button><button onclick="irANodo('nodo16')">“Yo no te debo nada; dejame pasar o se te arma la podrida”</button></div>
+    </div></section>
+
+    <section class="nodo" id="nodo11"><div class="contenido-nodo"><span class="nivel">NIVEL 3 · LA CRISIS</span><h1>La Trampa de la Empalizada</h1>
+        <div class="texto-historia"><p>El cazador finge creerte y al darte la espalda intentás quitarle la escopeta. Pero sus reflejos son más rápidos y te empuja.</p><p>Caés al suelo.</p></div>
+        <div class="opciones"><button onclick="irANodo('nodo17')">Lanzarte al ataque frontal usando el cuchillo</button><button onclick="irANodo('nodo18')">Arrojar tierra a sus ojos y correr hacia la niebla</button></div>
+    </div></section>
+
+    <section class="nodo" id="nodo12"><div class="contenido-nodo"><span class="nivel">NIVEL 3 · LA REVELACIÓN</span><h1>La Marca de la Banda</h1>
+        <div class="texto-historia"><p>El cazador reconoce la marca en el pomo del cuchillo.</p><p class="dialogo">—Esta faca pertenecía al jefe de la guardia que purgó la costa. Si la tenés, o sos el asesino o sos el miserable que sobrevivió.</p><p>Te ofrece pólvora para prender fuego al bosque y borrar las pruebas.</p></div>
+        <div class="opciones"><button onclick="irANodo('nodo17')">Su crueldad te enfurece. Atacar al cazador</button><button onclick="irANodo('nodo18')">Negarte y exigir que te lleve a las afueras</button></div>
+    </div></section>
+
+    <section class="nodo" id="nodo13"><div class="contenido-nodo"><span class="nivel">NIVEL 3 · LA REVELACIÓN</span><h1>El Cuenco de Agua Negra</h1>
+        <div class="texto-historia"><p>La tejedora te ofrece un frasco con agua turbulenta y hojas. El perro apoya el hocico sobre tu rodilla temblando.</p><p class="dialogo">—Tomá si decís ser su dueño. El agua te va a devolver la memoria, pero la verdad de lo que hiciste pesa más que el plomo.</p></div>
+        <div class="opciones"><button onclick="irANodo('nodo19')">Beber el agua oscura de un trago</button><button onclick="irANodo('nodo20')">Volcar el frasco y acusar a la mujer de intentar envenenarte</button></div>
+    </div></section>
+
+    <section class="nodo" id="nodo14"><div class="contenido-nodo"><span class="nivel">NIVEL 3 · LA REVELACIÓN</span><h1>La Deuda de Sangre</h1>
+        <div class="texto-historia"><p>El perro se interpone gruñendo entre la mujer y vos. La anciana corta un hilo con las uñas.</p><p class="dialogo">—La bestia te protege porque tenés el olor del amo al que traicionaste en la fuga. Te doy una última opción para limpiar tu nombre.</p></div>
+        <div class="opciones"><button onclick="irANodo('nodo19')">Arrodillarte junto al perro y ofrecerle tu mano</button><button onclick="irANodo('nodo20')">Huir del arenero antes de que la mujer complete su conjuro</button></div>
+    </div></section>
+
+    <section class="nodo" id="nodo15"><div class="contenido-nodo"><span class="nivel">NIVEL 3 · LA REVELACIÓN</span><h1>El Contrato de Reemplazo</h1>
+        <div class="texto-historia"><p>El hombre saca de un maletín la otra mitad de la fotografía: en ella aparecés sonriendo junto al cadáver de un policía.</p><p class="dialogo">—Vos firmaste este encargo. O pagás con los recuerdos de tu vida anterior o tomás mi puesto encargándote de los deudores.</p></div>
+        <div class="opciones"><button onclick="irANodo('nodo21')">Firmar la cesión de tus recuerdos con una gota de sangre</button><button onclick="irANodo('nodo22')">Arrebatarle la foto e intentar destruir los papeles</button></div>
+    </div></section>
+
+    <section class="nodo" id="nodo16"><div class="contenido-nodo"><span class="nivel">NIVEL 3 · LA CRISIS</span><h1>El Precio del Cruce</h1>
+        <div class="texto-historia"><p>El hombre bloquea tu paso.</p><p class="dialogo">—Nadie se va gratis. Si no pagás, vas a recompensarme transportando una carga hacia la ciudad para mis asociados.</p></div>
+        <div class="opciones"><button onclick="irANodo('nodo21')">Aceptar la caja sellada sin preguntar qué contiene</button><button onclick="irANodo('nodo22')">Embestirlo para cruzar el arco a la fuerza</button></div>
+    </div></section>
+
+    <section class="nodo final" id="nodo17"><div class="contenido-nodo"><span class="nivel">FINAL 1 · DOMINIO Y VIOLENCIA</span><h1>El Señor de la Frontera</h1>
+        <div class="texto-historia"><p>El cazador cae ensangrentado sobre los yuyos. Al limpiar el cuchillo comprendés que no hay retorno a la civilización.</p><p>La niebla responde a tu pulso y las alimañas guardan silencio a tu paso. Te colgás la escopeta a la espalda y asumís la guardia del bosque, cazando a todo aquel que ose cruzar el río sin tu permiso.</p></div>
+        <p class="mensaje-final">FIN</p><button class="reiniciar" onclick="reiniciarHistoria()">VOLVER A EMPEZAR</button>
+    </div></section>
+
+    <section class="nodo" id="nodo18"><div class="contenido-nodo"><span class="nivel">HUÍDA</span><h1>Entre la Niebla</h1><div class="texto-historia"><p>La huida desesperada te arroja sin armas hacia el claro del forastero.</p></div><div class="opciones"><button onclick="irANodo('nodo22')">Continuar</button></div></div></section>
+
+    <section class="nodo final" id="nodo19"><div class="contenido-nodo"><span class="nivel">FINAL 2 · EXPIACIÓN Y RUINA</span><h1>El Velo de la Culpa</h1>
+        <div class="texto-historia"><p>El agua negra te devuelve el horror de tu pasado: fuiste vos quien abandonó a su propia familia para salvar el pellejo en la guerra del río.</p><p>El perro se echa a tus pies perdonando la falta, pero la culpa te ancla a la tierra. Pasás los años sirviendo a la tejedora como guardián ciego del arenero.</p></div>
+        <p class="mensaje-final">FIN</p><button class="reiniciar" onclick="reiniciarHistoria()">VOLVER A EMPEZAR</button>
+    </div></section>
+
+    <section class="nodo" id="nodo20"><div class="contenido-nodo"><span class="nivel">HUÍDA</span><h1>El Desagüe</h1><div class="texto-historia"><p>Al huir a ciegas del arenero caés en el sendero del desagüe.</p></div><div class="opciones"><button onclick="irANodo('nodo15')">Continuar</button></div></div></section>
+
+    <section class="nodo final" id="nodo21"><div class="contenido-nodo"><span class="nivel">FINAL 3 · PÉRDIDA DE IDENTIDAD Y ÉXODO</span><h1>El Contrato Vacío</h1>
+        <div class="texto-historia"><p>Entregás tu pasado en la firma. El traficante asiente y te entrega un boleto de tren con fecha del día.</p><p>Salís a la ruta asfaltada bajo las primeras luces del amanecer. Sos libre de caminar hacia la ciudad, pero ignorás tu propio nombre y jamás volverás a sentir alegría ni rencor.</p></div>
+        <p class="mensaje-final">FIN</p><button class="reiniciar" onclick="reiniciarHistoria()">VOLVER A EMPEZAR</button>
+    </div></section>
+
+    <section class="nodo muerte" id="nodo22"><div class="contenido-nodo"><span class="nivel">MUERTE</span><h1>El Final del Camino</h1>
+        <div class="texto-historia"><p>El traficante esconde dentro de su saco un revólver.</p><p>Aprieta el gatillo y caés de espaldas. Tu sangre se mezcla con el agua sucia del desagüe.</p></div>
+        <p class="mensaje-final">HAS MUERTO</p><button class="reiniciar" onclick="reiniciarHistoria()">DESPERTAR OTRA VEZ</button>
+    </div></section>
+</main>
+
+<script>
+function comenzarHistoria() {
+    document.getElementById("portada").classList.add("oculto");
+    document.getElementById("historia").classList.remove("oculto");
+    irANodo("nodo1");
+}
+function irANodo(id) {
+    detenerVideos();
+    document.querySelectorAll(".nodo").forEach(function(nodo) { nodo.classList.remove("activo"); });
+    const siguienteNodo = document.getElementById(id);
+    if (siguienteNodo) siguienteNodo.classList.add("activo");
+    window.scrollTo({ top: 0, behavior: "smooth" });
+}
+function detenerVideos() {
+    document.querySelectorAll("video").forEach(function(video) { video.pause(); });
+}
+function reiniciarHistoria() {
+    detenerVideos();
+    irANodo("nodo1");
+}
+const todosLosVideos = document.querySelectorAll("video");
+todosLosVideos.forEach(function(videoActual) {
+    videoActual.addEventListener("play", function() {
+        todosLosVideos.forEach(function(otroVideo) {
+            if (otroVideo !== videoActual) otroVideo.pause();
+        });
+    });
+});
+</script>
+</body>
+</html>
